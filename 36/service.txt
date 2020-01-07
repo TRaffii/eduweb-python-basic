@@ -1,0 +1,2 @@
+Product name: toast, price: 3.99 
+Product name: Many customers, price: 10.99, gust number: 11 
