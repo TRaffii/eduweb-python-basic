@@ -36,12 +36,12 @@ class Bill:
 
     @property
     def entries(self):
-        return self.__entries
+        return [element.__dict__ for element in self.__entries]
 
     @entries.setter
     def entries(self, entries):
         if entries == []:
             print("Entries can't be empty")
             return
-        self.__entries = entries
+        self.__entries = [Meal.fromdict(entry) for entry in entries]
 

@@ -1,9 +1,9 @@
 import view
 from bill import Bill
-from flask import Flask, request, render_template
+from flask import Flask, request, session, render_template, session
 
 app = Flask(__name__)
-bill = Bill()
+bill = None
 
 def main():
     action = "Start"
@@ -40,15 +40,27 @@ def main():
 
 @app.route('/add_meal', methods=['POST'])
 def add_meal():
+    bill = Bill()
+    if 'entries' in session:
+        entries = session['entries']
+        bill.entries = entries
+
     name = request.form['meal_name']
-    price = request.form['meal_price']
+    price = float(request.form['meal_price'])
     bill.add_meal(name, price)
+    session['entries'] = bill.entries
     return "Success"
+
 
 @app.route('/sum')
 def sum():
+    bill = Bill()
+    if 'entries' in session:
+        entries = session['entries']
+        bill.entries = entries
     return f"Overall sum: {bill.calculate()}"
 
 
 if __name__ == '__main__':
+    app.secret_key = "secret value"
     app.run(debug=True)
