@@ -1,13 +1,25 @@
+import view
 from bill import Bill
-from meal import Meal
 
 
 def main():
     bill = Bill()
-    bill.add_meal("Eggs", 6.99)
-    bill.add_meal("Coffee", 3.99)
+    action = "Start"
 
-    print(bill.calculate())
+    while action != "End":
+        action = input("What you want to do? [Add, Sum, Discount, Save, End]: ")
+
+        if action == "Add":
+            name, price = view.ask_for_meal()
+            bill.add_meal(name, price)
+        elif action == "Sum":
+            print(bill.calculate())
+        elif action == "Discount":
+            discount = view.ask_for_discount()
+            print(bill.calculate_with_discount(discount))
+        elif action == "Save":
+            filename = view.ask_for_filename()
+            bill.print_to_file(filename)
 
 
 if __name__ == '__main__':

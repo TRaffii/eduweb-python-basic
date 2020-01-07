@@ -6,8 +6,9 @@ class Bill:
     def __init__(self):
         self.meals = []
 
-    def add_discount(self):
-        pass
+    def calculate_with_discount(self, discount):
+        current_sum = self.calculate()
+        return current_sum - current_sum * discount/100
 
     def calculate(self):
         cost = 0.0
