@@ -1,5 +1,29 @@
 
 
+def print_all(ski_jumpers):
+    for jumper in ski_jumpers:
+        print(jumper)
+
+
+def find_jumper(jumper_name="Kamil Stoch"):
+    for jumper in ski_jumpers:
+        if list(jumper.keys())[0] == jumper_name:
+            print(jumper)
+            break
+
+
+def find_by_nationality(ski_jumpers, nationality):
+    for jumper in ski_jumpers:
+        if list(jumper.values())[0] == nationality:
+            print(jumper)
+            break
+
+def print_nice(*ski_jumpers):
+    for jumper in ski_jumpers:
+        print("\n************SKI JUMPER***********")
+        print("************", jumper, "***********")
+        print("************SKI JUMPER***********")
+
 ski_jumpers = [{"Ryoyu Kobayashi": "JPN"},
                {"Kamil Stoch": "PL"},
                {"Stefan Kraft": "AU"},
@@ -7,33 +31,10 @@ ski_jumpers = [{"Ryoyu Kobayashi": "JPN"},
                {"Piotr Żyła": "PL"},
                {"Johann Andre Forfang": "NOR"}]
 
-for jumper in ski_jumpers:
-    print(jumper)
+# list all jumpers
+print_all(ski_jumpers)
+print_all(ski_jumpers)
+find_jumper()
+find_by_nationality(nationality="PL", ski_jumpers=ski_jumpers)
 
-index = 0
-while index < len(ski_jumpers):
-    print(ski_jumpers[index], ski_jumpers[index + 1])
-    index += 2
-
-for jumper in ski_jumpers:
-    if list(jumper.keys())[0] == "Kamil Stoch":
-        print(jumper)
-        break
-
-index = 0
-number_of_jumpers = 3
-while index < number_of_jumpers:
-    print(ski_jumpers[index])
-    index += 1
-
-for jumper in ski_jumpers:
-    if list(jumper.values())[0] == "PL":
-        print(jumper)
-        break
-
-for jumper in ski_jumpers:
-    if list(jumper.values())[0] == "NOR":
-        print(jumper)
-
-norwegians = [jumper for jumper in ski_jumpers if list(jumper.values())[0] == "NOR"]
-print(norwegians)
+print(print_nice("Piotr  Żyła", "Timi Zajc", "test jumper"))
