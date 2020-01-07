@@ -1,7 +1,9 @@
 
 
 
-bitcoin_price = 3500
+print("Provide a bitcoin price")
+bitcoin_price = int(input())
+
 if bitcoin_price > 3000:
 	print("Waiting for a better rate")
 else:
