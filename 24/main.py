@@ -1,12 +1,10 @@
-from flask import Flask
-from flask import jsonify
+from flask import Flask, request
 
 app = Flask(__name__)
 
 
 @app.route("/")
 def hello():
-    raise ValueError
     return "@@@@Hello, World@@@@"
 
 
@@ -20,6 +18,13 @@ def greetings(username="User"):
 @app.route("/greetings/<name>/<surname>")
 def full_greeting(name, surname):
     return f"Welcome {name.capitalize()} {surname.capitalize()}"
+
+
+@app.route('/login', methods=['POST'])
+def login():
+    if request.form['name'] == "Admin" and request.form['password'] == "123":
+        return "Success!"
+    return "Failure"
 
 
 if __name__ == '__main__':
