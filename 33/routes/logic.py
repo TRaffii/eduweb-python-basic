@@ -33,7 +33,7 @@ def add_service():
 @logic_routes.route('/sum')
 def sum():
     bill = get_bill()
-    return f"Overall sum: {bill.calculate()}"
+    return render_template("default_template.html", message=f"Overall sum: {bill.calculate()}")
 
 
 @logic_routes.route('/check', methods=['POST'])
