@@ -17,14 +17,14 @@ class Bill:
 
     def calculate(self):
         cost = 0.0
-        for meal in self.entries:
-            cost += meal.price
+        for entry in self.entries:
+            cost += entry.price
         return cost
 
     def print_to_file(self, filename):
         with open(filename, "w") as file:
-            for meal in self.entries:
-                file.write("Product name: {}, price: {} \n".format(meal.name, meal.price))
+            for entry in self.entries:
+                file.write(entry.generate_description())
 
     def add_meal(self, name, price):
         meal = Meal(name, price)
