@@ -41,7 +41,6 @@ def main():
             bill.print_to_file(filename)
 
 
-
 if __name__ == '__main__':
     app.secret_key = "secret value"
     app.run(debug=True)

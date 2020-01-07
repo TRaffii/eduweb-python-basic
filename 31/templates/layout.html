@@ -5,6 +5,10 @@
   </head>
   <body>
     <div class="nav">
+      <a href="{{url_for('form_routes.add_meal_form')}}">Add meal</a>
+      <a href="{{url_for('form_routes.add_service_form')}}">Add service</a>
+      <a href="{{url_for('form_routes.check_discount_form')}}">Check discount</a>
+      <a href="{{url_for('logic_routes.sum')}}">Check discount</a>
     </div>
     <div class="container">
       {% block content %} {% endblock %}
