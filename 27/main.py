@@ -1,9 +1,11 @@
 import view
 from bill import Bill
+from flask import Flask, request, render_template
 
+app = Flask(__name__)
+bill = Bill()
 
 def main():
-    bill = Bill()
     action = "Start"
 
     while action != "End":
@@ -34,9 +36,19 @@ def main():
         elif action == "Save":
             filename = view.ask_for_filename()
             bill.print_to_file(filename)
-        elif action == "Access":
-            bill.entries = []
+
+
+@app.route('/add_meal', methods=['POST'])
+def add_meal():
+    name = request.form['meal_name']
+    price = request.form['meal_price']
+    bill.add_meal(name, price)
+    return "Success"
+
+@app.route('/sum')
+def sum():
+    return f"Overall sum: {bill.calculate()}"
 
 
 if __name__ == '__main__':
-    main()
+    app.run(debug=True)
