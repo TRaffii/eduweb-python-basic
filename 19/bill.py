@@ -44,3 +44,4 @@ class Bill:
             print("Entries can't be empty")
             return
         self.__entries = entries
+
