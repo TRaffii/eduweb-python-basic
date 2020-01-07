@@ -1,7 +1,12 @@
-from flask import Blueprint, request, session
+from flask import Blueprint, request, session, render_template
 from bill import Bill
 
 logic_routes = Blueprint('logic_routes', __name__)
+
+
+@logic_routes.route('/')
+def index():
+    return render_template('layout.html')
 
 
 @logic_routes.route('/add_meal', methods=['POST'])
