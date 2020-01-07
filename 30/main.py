@@ -1,8 +1,11 @@
 import view
 from bill import Bill
-from flask import Flask, request, session, render_template, session
+from flask import Flask
+from routes import logic, form
 
 app = Flask(__name__)
+app.register_blueprint(logic.logic_routes)
+app.register_blueprint(form.form_routes)
 bill = None
 
 def main():
@@ -37,33 +40,6 @@ def main():
             filename = view.ask_for_filename()
             bill.print_to_file(filename)
 
-
-@app.route('/add_meal', methods=['POST'])
-def add_meal():
-    bill = Bill()
-    if 'entries' in session:
-        entries = session['entries']
-        bill.entries = entries
-
-    name = request.form['meal_name']
-    price = float(request.form['meal_price'])
-    bill.add_meal(name, price)
-    session['entries'] = bill.entries
-    return "Success"
-
-
-@app.route('/add_meal_form')
-def add_meal_form():
-    render_template('add_meal_form.html')
-
-
-@app.route('/sum')
-def sum():
-    bill = Bill()
-    if 'entries' in session:
-        entries = session['entries']
-        bill.entries = entries
-    return f"Overall sum: {bill.calculate()}"
 
 
 if __name__ == '__main__':
