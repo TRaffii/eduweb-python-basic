@@ -6,7 +6,7 @@ def ask_for_meal():
 
 def ask_for_service():
     name = input("Provide service type:")
-    price = input("Provide service price (%):")
+    price = input("Provide service price:")
     guests = input("Provide number of guests:")
     return name, int(price), guests
 

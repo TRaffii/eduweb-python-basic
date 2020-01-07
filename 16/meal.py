@@ -1,6 +1,7 @@
+from entry import Entry
 
-class Meal:
+
+class Meal(Entry):
 
     def __init__(self, name, price):
-        self.name = name
-        self.price = price
+        super().__init__(name, price)

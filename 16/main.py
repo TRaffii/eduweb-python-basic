@@ -7,11 +7,14 @@ def main():
     action = "Start"
 
     while action != "End":
-        action = input("What you want to do? [Add, Sum, Discount, Check, Save, End]: ")
+        action = input("What you want to do? [Add meal, Add service, Sum, Discount, Check, Save, End]: ")
 
-        if action == "Add":
-            name, price, guests = view.ask_for_service()
-            bill.add_service(name, price, guests)
+        if action == "Add meal":
+            name, price = view.ask_for_meal()
+            bill.add_meal(name, price)
+        elif action == "Add service":
+            name, price, guest_number = view.ask_for_service()
+            bill.add_service(name, price, guest_number)
         elif action == "Sum":
             print(bill.calculate())
         elif action == "Discount":

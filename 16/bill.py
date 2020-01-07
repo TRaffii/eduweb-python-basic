@@ -1,4 +1,5 @@
 from meal import Meal
+from service import Service
 
 
 class Bill:
@@ -29,3 +30,6 @@ class Bill:
         meal = Meal(name, price)
         self.entries.append(meal)
 
+    def add_service(self, name, price, guest_number):
+        service = Service(name, price, guest_number)
+        self.entries.append(service)
