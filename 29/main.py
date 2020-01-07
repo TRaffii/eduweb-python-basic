@@ -52,6 +52,11 @@ def add_meal():
     return "Success"
 
 
+@app.route('/add_meal_form')
+def add_meal_form():
+    render_template('add_meal_form.html')
+
+
 @app.route('/sum')
 def sum():
     bill = Bill()

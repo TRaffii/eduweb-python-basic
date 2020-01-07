@@ -43,5 +43,5 @@ class Bill:
         if entries == []:
             print("Entries can't be empty")
             return
-        self.__entries = [Meal.fromdict(entry) for entry in entries]
+        self.__entries = [Meal.from_dict(entry) for entry in entries]
 

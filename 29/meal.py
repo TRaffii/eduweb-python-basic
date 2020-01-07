@@ -7,7 +7,7 @@ class Meal(Entry):
         super().__init__(name, price)
 
     @classmethod
-    def fromdict(self, dictionary):
+    def from_dict(cls, dictionary):
         return_object = Meal(None, None)
         for k, v in dictionary.items():
             setattr(return_object, k, v)
