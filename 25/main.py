@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
@@ -25,6 +25,11 @@ def login():
     if request.form['name'] == "Admin" and request.form['password'] == "123":
         return "Success!"
     return "Failure"
+
+
+@app.route('/login_form')
+def login_form():
+    return render_template('layout_form.html', default_username="Provide username")
 
 
 if __name__ == '__main__':

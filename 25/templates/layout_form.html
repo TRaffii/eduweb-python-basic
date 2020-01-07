@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login form</title>
+  </head>
+  <body>
+    <div class="container">
+        <form method="post" action="{{url_for('login')}}">
+            <label for="username">Username</label>
+            <input value="{{default_username}}" name="name" type="text" id="username">
+            <label for="password">Password</label>
+            <input name="password" type="text" id="password">
+            <input type="submit" />
+        </form>
+    </div>
+  </body>
+</html>
