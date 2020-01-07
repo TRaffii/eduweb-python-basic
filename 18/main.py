@@ -26,6 +26,8 @@ def main():
         elif action == "Save":
             filename = view.ask_for_filename()
             bill.print_to_file(filename)
+        elif action == "Access":
+            bill.entries = []
 
 
 if __name__ == '__main__':

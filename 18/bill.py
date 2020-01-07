@@ -5,7 +5,7 @@ from service import Service
 class Bill:
 
     def __init__(self):
-        self.entries = []
+        self.__entries = []
 
     @staticmethod
     def check_discount(overall_sum, discount):
@@ -17,19 +17,30 @@ class Bill:
 
     def calculate(self):
         cost = 0.0
-        for entry in self.entries:
+        for entry in self.__entries:
             cost += entry.price
         return cost
 
     def print_to_file(self, filename):
         with open(filename, "w") as file:
-            for entry in self.entries:
+            for entry in self.__entries:
                 file.write(entry.generate_description())
 
     def add_meal(self, name, price):
         meal = Meal(name, price)
-        self.entries.append(meal)
+        self.__entries.append(meal)
 
     def add_service(self, name, price, guest_number):
         service = Service(name, price, guest_number)
-        self.entries.append(service)
+        self.__entries.append(service)
+
+    @property
+    def entries(self):
+        return self.__entries
+
+    @entries.setter
+    def entries(self, entries):
+        if entries == []:
+            print("Entries can't be empty")
+            return
+        self.__entries = entries
