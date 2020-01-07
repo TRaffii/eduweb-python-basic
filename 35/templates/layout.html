@@ -2,7 +2,6 @@
 <html>
   <head>
     <title>Main page</title>
-    <!-- Latest compiled and minified CSS -->
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
   <link rel="stylesheet" href="{{url_for('static', filename='custom.css')}}">
@@ -23,7 +22,7 @@
           <a href="{{url_for('logic_routes.sum')}}">Check sum</a>
         </li>
         <li>
-          <a href="{{url_for('logic_routes.add_discount', discount='10')}}">Check current price with 10% discount</a>
+          <a href="{{url_for('logic_routes.add_discount', discount=10)}}">Check sum with discount = 10%</a>
         </li>
       </ul>
     </div>

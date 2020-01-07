@@ -13,7 +13,10 @@ def index():
 def add_meal():
     bill = get_bill()
     name = request.form['meal_name']
-    price = float(request.form['meal_price'])
+    try:
+        price = float(request.form['meal_price'])
+    except ValueError:
+        return render_template('default_template.html', message="Unable to convert price")
     bill.add_meal(name, price)
     session['entries'] = bill.entries
     return render_template('default_template.html', message="Success")
@@ -32,6 +35,7 @@ def add_service():
 
 @logic_routes.route('/sum')
 def sum():
+    return render_template('404.html', message="Unable to access the route"), 500
     bill = get_bill()
     return render_template('default_template.html', message=f"Overall sum: {bill.calculate()}")
 
