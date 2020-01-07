@@ -1,5 +1,6 @@
 from flask import Blueprint, request, session, render_template, abort
 from bill import Bill
+from datetime import datetime
 
 logic_routes = Blueprint('logic_routes', __name__)
 
@@ -62,6 +63,16 @@ def add_discount(discount):
     bill = get_bill()
     discount = int(discount)
     return render_template('default_template.html', message=f"Cost with discount is: {bill.calculate_with_discount(discount)}")
+
+
+@logic_routes.route('/contact', methods=['POST'])
+def send_message():
+    name = request.form['user_name']
+    text = request.form['user_text']
+    filename = f"Contact {datetime.now()}"
+    with open(filename, "w") as file:
+        file.writelines(f"Name: {name} Message: {text}")
+    return render_template('default_template.html', message=f"Your message was saved")
 
 
 def get_bill():

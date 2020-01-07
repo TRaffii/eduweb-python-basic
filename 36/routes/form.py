@@ -16,3 +16,7 @@ def add_service_form():
 @form_routes.route('/check_discount_form')
 def check_discount_form():
     return render_template('check_discount_form.html')
+
+@form_routes.route('/contact_form')
+def contact_form():
+    return render_template('contact_form.html')
