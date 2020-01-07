@@ -1,0 +1,2 @@
+Product name: Eggs, price: 3.99 
+Product name: Burger, price: 2.99 
