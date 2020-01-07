@@ -9,10 +9,23 @@
   </head>
   <body>
     <div class="nav">
-      <a href="{{url_for('form_routes.add_meal_form')}}">Add meal</a>
-      <a href="{{url_for('form_routes.add_service_form')}}">Add service</a>
-      <a href="{{url_for('form_routes.check_discount_form')}}">Check discount</a>
-      <a href="{{url_for('logic_routes.sum')}}">Check sum</a>
+      <ul>
+        <li>
+          <a href="{{url_for('form_routes.add_meal_form')}}">Add meal</a>
+        </li>
+        <li>
+          <a href="{{url_for('form_routes.add_service_form')}}">Add service</a>
+        </li>
+        <li>
+          <a href="{{url_for('form_routes.check_discount_form')}}">Check discount</a>
+        </li>
+        <li>
+          <a href="{{url_for('logic_routes.sum')}}">Check sum</a>
+        </li>
+        <li>
+          <a href="{{url_for('logic_routes.add_discount', discount='10')}}">Check current price with 10% discount</a>
+        </li>
+      </ul>
     </div>
     <div class="container">
       {% block content %} {% endblock %}

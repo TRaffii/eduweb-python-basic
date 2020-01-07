@@ -1,4 +1,4 @@
-from flask import Blueprint, request, session, render_template
+from flask import Blueprint, request, session, render_template, abort
 from bill import Bill
 
 logic_routes = Blueprint('logic_routes', __name__)
@@ -16,7 +16,7 @@ def add_meal():
     price = float(request.form['meal_price'])
     bill.add_meal(name, price)
     session['entries'] = bill.entries
-    return "Success"
+    return render_template('default_template.html', message="Success")
 
 
 @logic_routes.route('/add_service', methods=['POST'])
@@ -27,13 +27,13 @@ def add_service():
     guests_number = float(request.form['service_guests'])
     bill.add_service(name, price, guests_number)
     session['entries'] = bill.entries
-    return "Success"
+    return render_template('default_template.html', message="Success")
 
 
 @logic_routes.route('/sum')
 def sum():
     bill = get_bill()
-    return render_template("default_template.html", message=f"Overall sum: {bill.calculate()}")
+    return render_template('default_template.html', message=f"Overall sum: {bill.calculate()}")
 
 
 @logic_routes.route('/check', methods=['POST'])
@@ -41,7 +41,7 @@ def check():
     overall_sum = float(request.form['overall_sum'])
     discount_value = int(request.form['discount'])
     value = Bill.check_discount(overall_sum, discount_value)
-    return f"Whole order will cost: {value} after discount"
+    return render_template('default_template.html', message=f"Whole order will cost: {value} after discount")
 
 
 @logic_routes.route('/save/<filename>')
@@ -49,15 +49,16 @@ def save(filename):
     bill = get_bill()
     try:
         bill.print_to_file(filename)
-        return "Success!"
+        return render_template('default_template.html', message="Success!")
     except:
-        return "Unable to save the file"
+        return render_template('default_template.html', message="Unable to save the file")
 
 
 @logic_routes.route('/add_discount/<discount>')
 def add_discount(discount):
     bill = get_bill()
-    return f"Cost with discount is: {bill.calculate_with_discount(discount)}"
+    discount = int(discount)
+    return render_template('default_template.html', message=f"Cost with discount is: {bill.calculate_with_discount(discount)}")
 
 
 def get_bill():
